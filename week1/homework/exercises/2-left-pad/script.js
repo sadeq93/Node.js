@@ -11,3 +11,5 @@
 let numbers = [ "12", "846", "2", "1236" ];
 
 // YOUR CODE GOES HERE
+const leftPad = require('left-pad')
+numbers.forEach(val => {console.log(leftPad(val, 5, '_'))})
