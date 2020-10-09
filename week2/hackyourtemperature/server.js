@@ -1,28 +1,28 @@
-const express     = require("express");
-const app         = express();
-const path        = require("path");
-const expressHbs  = require('express-handlebars');
-const bodyParser  = require('body-parser');
+const express = require("express");
+const app = express();
+const path = require("path");
+const expressHbs = require("express-handlebars");
+const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, "public")));
 app.engine(
-  'hbs',
+  "hbs",
   expressHbs({
-    defaultLayout : 'main',
-    extname       : 'hbs'
+    defaultLayout: "main",
+    extname: "hbs",
   })
 );
-app.set('view engine', 'hbs');
+app.set("view engine", "hbs");
 // routing
-app.get   ('/', (req,res) => {
-  res.render('home', {
-    pageTitle: 'Home',
-    pageStyle: '/css/home.css'
-  })
+app.get("/", (req, res) => {
+  res.status(200).render("home", {
+    pageTitle: "Home",
+    pageStyle: "/css/home.css",
+  });
 });
-app.post('/weather', (req,res) => {
+app.post("/weather", (req, res) => {
   const nameOfCity = req.body.cityName;
-  res.send(nameOfCity)
+  res.status(201).send(nameOfCity);
 });
 const port = 7777;
 app.listen(port);
